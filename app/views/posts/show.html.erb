@@ -1,0 +1,9 @@
+<h1>投稿詳細</h1>
+
+<h2>文章</h2>
+<%= @post.text %>
+<h2>画像</h2>
+<% @post.post_images.each do |post_image| %>
+    <%= attachment_image_tag post_image, :image, size: "130x130" %>
+<% end %>
+<%= link_to '削除', post_path(@post.id), method: :delete %>

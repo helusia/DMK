@@ -1,0 +1,6 @@
+<h1>ユーザー一覧</h1>
+
+<% @users.each do |user| %>
+    <%= link_to user.name, user_path(user.id) %>
+    <%= attachment_image_tag user, :image, size: '100x100' %>
+<% end %>

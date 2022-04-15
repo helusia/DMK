@@ -1,0 +1,16 @@
+<%= link_to 'ユーザー一覧', users_path %>
+<%= link_to '新規登録', new_post_path %><br>
+<h1>投稿一覧</h1>
+<% @posts.each do |post|%>
+    <%= link_to post.text, post_path(post.id) %>
+    <% post.post_images.each do |post_image| %>
+    <!--元々@postにしていてnomethoderror undefined post_images for nil
+        nilのpost_imageを表示していた（nil=@post）
+        うえのpost.textを参考に@を外すことで解決
+
+        RuntimeError at / Refile.secret_key was not set.が出たら
+        Refile.secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'をコピーして
+        config/initializersに貼り付け-->
+    　　<%= attachment_image_tag post_image, :image, size: "130x130" %>
+    　<% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>新規投稿ページ</h1>
+<%= form_with model: @post do |f| %>
+  <%= f.label :"文章" %>
+  <%= f.text_field :text %>
+  <%= f.label :"画像" %>
+　<%= f.attachment_field :post_images_images, multiple: true %>
+　<!--複数画像投稿のためにmultiple: trueが必要
+　複数選ぶときはcommand、ctrlを押しながら-->
+  <%= f.submit '投稿' %>
+<% end %>
+<%= link_to '戻る', posts_path %>
