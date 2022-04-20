@@ -1,16 +1,27 @@
 <%= link_to 'ユーザー一覧', users_path %>
 <%= link_to '新規登録', new_post_path %><br>
-<h1>投稿一覧</h1>
-<% @posts.each do |post|%>
-    <%= link_to post.text, post_path(post.id) %>
-    <% post.post_images.each do |post_image| %>
-    <!--元々@postにしていてnomethoderror undefined post_images for nil
-        nilのpost_imageを表示していた（nil=@post）
-        うえのpost.textを参考に@を外すことで解決
-
-        RuntimeError at / Refile.secret_key was not set.が出たら
-        Refile.secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'をコピーして
-        config/initializersに貼り付け-->
-    　　<%= attachment_image_tag post_image, :image, size: "130x130" %>
-    　<% end %>
+<% if user_signed_in? %>
+  <div class="search_form">
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.select :range, options_for_select([['User'], ['Post']]) %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 <% end %>
+<h1>投稿一覧</h1>
+    <% @posts.each do |post|%>
+        <%= link_to post.text, post_path(post.id) %>
+        <% post.post_images.each do |post_image| %>
+            <!--元々@postにしていてnomethoderror undefined post_images for nil
+            nilのpost_imageを表示していた（nil=@post）
+            うえのpost.textを参考に@を外すことで解決
+
+            RuntimeError at / Refile.secret_key was not set.が出たら
+            Refile.secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'をコピーして
+            config/initializersに貼り付け-->
+        　　<%= attachment_image_tag post_image, :image, size: "130x130" %>
+        <% end %>
+        　<p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+    <% end %>
