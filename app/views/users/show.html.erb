@@ -10,9 +10,18 @@
     <% end %>
 <% end %>
 <p><%=link_to"いいね一覧へ",favorites_user_path(@user) %></p>
-<% if @user=current_user %>
+<% if @user.id == current_user.id %>
     <%= link_to '戻る', users_path %>
     <%= link_to '編集する', edit_user_path(@user.id) %>
 <% else %>
     <%= link_to '戻る', users_path %>
 <% end %>
+
+<%# binding.irb %>
+<!--↑処理を途中で止める記述　思い通りにならない時のエラーの確認で使う-->
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to '削除する', user_path(@user.id),method: :delete, "data-confirm"=>"本当に消しますか？" %>
+  <% end %>
+<% end %>
+
