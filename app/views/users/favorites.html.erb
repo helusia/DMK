@@ -1,0 +1,8 @@
+<h1>いいね一覧</h1>
+<% @favorite_posts.each do |post|%>
+    <%= link_to post.text, post_path(post.id) %>
+    <% post.post_images.each do |post_image| %>
+        <%= attachment_image_tag post_image, :image, size: "130x130" %>
+    <% end %>
+<% end %>
+<%= link_to '戻る', user_path(@user.id) %>

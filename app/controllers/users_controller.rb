@@ -17,6 +17,12 @@ def update
   redirect_to user_path(@user.id)
 end
 
+def favorites
+    @user = User.find(params[:id])
+    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
 
   def user_params
