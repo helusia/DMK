@@ -3,6 +3,11 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
   belongs_to :user
+  has_many :favorites, dependent: :destroy
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   # 検索方法分岐
   def self.looks(search, word)

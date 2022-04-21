@@ -9,7 +9,7 @@
         <%= attachment_image_tag post_image, :image, size: "130x130" %>
     <% end %>
 <% end %>
-
+<p><%=link_to"いいね一覧へ",favorites_user_path(@user) %></p>
 <% if @user=current_user %>
     <%= link_to '戻る', users_path %>
     <%= link_to '編集する', edit_user_path(@user.id) %>

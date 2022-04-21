@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   #accepts_attachments_for :post_images,
   attachment :image
-
+  has_many :favorites, dependent: :destroy
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
