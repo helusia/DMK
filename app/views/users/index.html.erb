@@ -1,0 +1,18 @@
+<h1>ユーザー一覧</h1>
+<div class="container">
+  <% @users.each do |user| %>
+    <div class="row d-flex align-items-start">
+      <div class="col-lg-1 mb-2">
+        <%= attachment_image_tag user, :image, size: '50x50', fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-lg-1">
+        <%= link_to user.name, user_path(user.id) %>
+      </div>
+      <div class="col">
+        <%= user.introduction %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
