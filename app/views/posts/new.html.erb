@@ -1,11 +1,32 @@
-<h1>新規投稿ページ</h1>
-<%= form_with model: @post do |f| %>
-  <%= f.label :"文章" %>
-  <%= f.text_field :text %>
-  <%= f.label :"画像" %>
-　<%= f.attachment_field :post_images_images, multiple: true %>
-　<!--複数画像投稿のためにmultiple: trueが必要
-　複数選ぶときはcommand、ctrlを押しながら-->
-  <%= f.submit '投稿' %>
-<% end %>
-<%= link_to '戻る', posts_path %>
+<div class="container">
+    <div class="d-flex justify-content-between">
+      <div class="p-2"><h1>新規投稿ページ</h1></div>
+      <div class="p-2"><%= link_to '戻る', posts_path, class: 'btn btn-lg btn-primary' %></div>
+    </div>
+  <%= form_with model: @post do |f| %>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+          <td><%= f.label :"文章" %></td>
+          <td><%= f.label :"画像" %></td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td><%= f.text_field :text %></td>
+          <td>
+            <%= f.attachment_field :post_images_images, multiple: true %>
+          　<!--複数画像投稿のためにmultiple: trueが必要
+          　複数選ぶときはcommand、ctrlを押しながら-->
+        　</td>
+        　<td><%= f.submit '投稿' %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
