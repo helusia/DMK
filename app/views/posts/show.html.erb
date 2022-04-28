@@ -23,7 +23,11 @@
         <% end %>
       </div>
       <div class="row mb-5">
-        <div class="col"><%= link_to '投稿を削除', post_path(@post.id), method: :delete %></div>
+        <div class="col">
+          <% if @post.user==current_user %>
+            <%= link_to '投稿を削除', post_path(@post.id), method: :delete %>
+          <% end %>
+        </div>
         <div class="col">
           <% if @post.favorited_by?(current_user) %>
             <p>

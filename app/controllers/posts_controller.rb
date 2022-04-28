@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :ensure_guest_user, only: [:edit, :new]
 
   def new
     @post=Post.new
@@ -43,5 +44,12 @@ class PostsController < ApplicationController
   # ストロングパラメータ
   def post_params
     params.require(:post).permit(:text, post_images_images: [])
+  end
+
+  def ensure_guest_user
+    @user = User.find(current_user.id)
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
   end
 end

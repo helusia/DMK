@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-between">
       <div class="p-2"><h1>ユーザー情報編集</h1></div>
-      <div class="p-2"><%= link_to '戻る', posts_path, class: 'btn btn-lg btn-primary' %></div>
+      <div class="p-2"><%= link_to '戻る', user_path(@user.id), class: 'btn btn-lg btn-primary' %></div>
   </div>
   <%= form_with model: @user do |f| %>
     <table class="table table-borderless">

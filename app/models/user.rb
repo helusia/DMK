@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :introduction, {length: {maximum: 150}}
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   #accepts_attachments_for :post_images,
