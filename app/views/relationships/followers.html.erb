@@ -1,0 +1,19 @@
+<div class="row mt-5">
+    <div class="col"><h1>フォロワー一覧</h1></div>
+    <div class="col"><%= link_to '戻る', users_path, class: 'btn btn-primary' %></div>
+</div>
+<div class="container mt-5">
+  <% @users.each do |user| %>
+    <div class="row d-flex align-items-start">
+        <div class="col-lg-1 mb-2">
+          <%= attachment_image_tag user, :image, size: '50x50', fallback: "no_image.jpg" %>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to user.name, user_path(user.id) %>
+        </div>
+        <div class="col">
+          <%= user.introduction %>
+        </div>
+    </div>
+  <% end %>
+</div>
