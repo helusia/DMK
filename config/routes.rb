@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   devise_for :users
   root to: 'homes#top'
   get 'about' => 'homes#about'
   get "search" => "searches#search"
   resources :users do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+
     member do
       get :favorites
+      get :followings
+      get :followers
     end
   end
   resources :posts do
@@ -16,7 +24,7 @@ Rails.application.routes.draw do
    namespace :admin do
     resources :users
   end
-  
+
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
