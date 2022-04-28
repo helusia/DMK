@@ -11,11 +11,18 @@ class RelationshipsController < ApplicationController
   end
   # フォロー一覧
   def followings
+    @user=User.find(params[:user_id])
     user = User.find(params[:user_id])
     @users = user.followings
   end
   # フォロワー一覧
   def followers
+    # params[:id]だとidというデータを探す処理になる
+    # paramsにはidというデータはないので
+    # params[:user_id]になる
+    # /users/11/followings
+    # params[:id]だとuser:数字まで
+    @user=User.find(params[:user_id])
     user = User.find(params[:user_id])
     @users = user.followers
   end
