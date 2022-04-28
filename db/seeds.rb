@@ -11,3 +11,4 @@ User.create!(name:  "管理者",
              password:  "11111111",
              password_confirmation: "11111111",
              admin: true)
+            # rails db:seed RAILS_ENV=productionを本番環境で実施する

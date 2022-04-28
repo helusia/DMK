@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :introduction, {length: {maximum: 150}}
+  validates :name, presence: true
 
   has_many :posts, dependent: :destroy
   has_many :post_images, dependent: :destroy
@@ -19,7 +20,7 @@ class User < ApplicationRecord
   # 一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
+
   # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
