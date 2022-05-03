@@ -1,5 +1,4 @@
-
-
+<!--投稿の詳細ページ-->
 <div class="container">
   <div class="row">
     <div class="col mb-5">
@@ -11,7 +10,7 @@
       <%= attachment_image_tag @post.user, :image, size: '50x50' %>
     </div>
     <div class="col-lg-1">
-        <%= @post.user.name %>
+        <%=link_to @post.user.name, user_path(@post.user.id) %>
     </div>
     <div class="col-lg-10">
       <div class="row mb-5">
@@ -46,6 +45,7 @@
         <div class="col"></div>
         <div class="col"></div>
       </div>
+      <!--コメント一覧表示-->
       <% @post.post_comments.each do |post_comment| %>
         <div class="row">
           <div class="col-lg-1">
@@ -66,6 +66,7 @@
         </div>
       <% end %>
       <div class="row">
+        <!--コメントを送信-->
         <%= form_with model: [@post, @post_comment] do |f| %>
           <table class="table table-borderless">
             <thead>
@@ -81,10 +82,4 @@
   </div>
 </div>
 
-
-
 <%#= link_to "#{@post.post_comments.count} コメント", post_path(@post.id) %>
-
-<!--いいねボタン-->
-
-

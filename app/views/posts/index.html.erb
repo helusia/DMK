@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <!--ログインしているユーザーの情報-->
   <div class="row">
     <div class="col-lg-2 d-flex justify-content-center">
       <div class="d-flex flex-column mt-5">
@@ -13,7 +14,7 @@
           </div>
         <% end %>
       </div>
-
+<!--全員の投稿一覧-->
     </div>
     <div class="col-lg-8 mt-5">
       <h1>投稿一覧</h1>
@@ -42,8 +43,9 @@
               RuntimeError at / Refile.secret_key was not set.が出たら
               Refile.secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'をコピーして
               config/initializersに貼り付け-->
-              <%= attachment_image_tag post_image, :image, size: "130x130" %>
+              <%= attachment_image_tag post_image, :image, size: "150x150" %>
             <% end %>
+            <!--コメント件数、いいねボタン-->
             <div class="row d-flex justify-content-end">
               コメント件数：<%= post.post_comments.count %>
               <% if post.favorited_by?(current_user) %>
@@ -62,10 +64,7 @@
             </div>
           </div>
         </div>
-
       <% end %>
-        　<!--いいねボタン-->
-
     </div>
     <div class="col-lg-2">
       <!--検索機能-->
@@ -81,6 +80,4 @@
       <% end %>
     </div>
   </div>
-
-
 </div>
