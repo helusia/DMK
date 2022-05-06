@@ -20,22 +20,24 @@
       <h1>投稿一覧</h1>
       <% @posts.each do |post|%>
         <div class="row">
+          
+        </div>
+        <!--<div class="row mb-5">-->
+        <!--  <div class="col-lg-1"></div>-->
+        <!--  <div class="col-lg-9">-->
+            
+        <!--  </div>-->
+        <!--</div>-->
+        <div class="row border secondary">
           <div class="col-lg-1">
             <%= attachment_image_tag post.user, :image, size: '50x50', fallback: "no_image.jpg" %>
           </div>
           <div class="col-lg-1">
             <%= link_to post.user.name, user_path(post.user.id) %>
           </div>
-        </div>
-        <div class="row mb-5">
-          <div class="col-lg-1"></div>
+          <!--<div class="col-lg-1"></div>-->
           <div class="col-lg-9">
-            <%= link_to post.text, post_path(post.id) %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-1"></div>
-          <div class="col-lg-9">
+            <div class="mb-5"><%= link_to post.text, post_path(post.id) %></div>
             <% post.post_images.each do |post_image| %>
               <!--元々@postにしていてnomethoderror undefined post_images for nil
               nilのpost_imageを表示していた（nil=@post）
