@@ -13,21 +13,16 @@
             <%= link_to '登録内容編集',edit_user_path(current_user),class: "btn#{current_user.id} btn-info" %>
           </div>
         <% end %>
+        <p>フォロワー数</p>
+        <%= current_user.followers.count %><br>
+        <p>フォロー数</p>
+        <%= current_user.followings.count %>
       </div>
-<!--全員の投稿一覧-->
     </div>
+    <!--全員の投稿一覧-->
     <div class="col-lg-8 mt-5">
       <h1>投稿一覧</h1>
       <% @posts.each do |post|%>
-        <div class="row">
-          
-        </div>
-        <!--<div class="row mb-5">-->
-        <!--  <div class="col-lg-1"></div>-->
-        <!--  <div class="col-lg-9">-->
-            
-        <!--  </div>-->
-        <!--</div>-->
         <div class="row border secondary">
           <div class="col-lg-1">
             <%= attachment_image_tag post.user, :image, size: '50x50', fallback: "no_image.jpg" %>
@@ -35,7 +30,6 @@
           <div class="col-lg-1">
             <%= link_to post.user.name, user_path(post.user.id) %>
           </div>
-          <!--<div class="col-lg-1"></div>-->
           <div class="col-lg-9">
             <div class="mb-5"><%= link_to post.text, post_path(post.id) %></div>
             <% post.post_images.each do |post_image| %>
