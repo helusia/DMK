@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         redirect_to user_path(@user.id)
     else
         render :edit
-    end  
+    end
   end
 
   def favorites
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
       @favorite_posts = Post.find(favorites)
   end
-  
+
   def destroy
   user = User.find(params[:id])
   user.destroy
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :image)#post_images_images: []
+    params.require(:user).permit(:name, :introduction, :image)
   end
 
   def ensure_guest_user

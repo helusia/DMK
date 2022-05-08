@@ -33,12 +33,9 @@
           <div class="col-lg-9">
             <div class="mb-5"><%= link_to post.text, post_path(post.id) %></div>
             <% post.post_images.each do |post_image| %>
-              <!--元々@postにしていてnomethoderror undefined post_images for nil
-              nilのpost_imageを表示していた（nil=@post）
-              うえのpost.textを参考に@を外すことで解決
-              RuntimeError at / Refile.secret_key was not set.が出たら
-              Refile.secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'をコピーして
-              config/initializersに貼り付け-->
+              <!--RuntimeError at / Refile.secret_key was not set.が出たら-->
+              <!--Refile.secret_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'をコピーして-->
+              <!--config/initializersに貼り付け-->
               <%= attachment_image_tag post_image, :image, size: "150x150" %>
             <% end %>
             <!--コメント件数、いいねボタン-->
