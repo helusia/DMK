@@ -27,21 +27,12 @@
             <%= link_to '投稿を削除', post_path(@post.id), method: :delete %>
           <% end %>
         </div>
-        <div class="col">
-          <% if @post.favorited_by?(current_user) %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :delete do %>
-                ♥<%= @post.favorites.count %> いいね
-              <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :post do %>
-                ♡<%= @post.favorites.count %> いいね
-              <% end %>
-            </p>
-          <% end %>
-        </div>
+        <!--いいねぼたん-->
+        <% if current_user.name != "guestuser" %>
+          <div id="favorite_buttons_<%= @post.id %>">
+            <%= render "favorites/favorites", post: @post %>
+          </div>
+        <% end %>
         <div class="col"></div>
         <div class="col"></div>
       </div>
@@ -64,6 +55,9 @@
             <%= post_comment.comment %>
           </div>
         </div>
+        <% if post_comment.user==current_user %>
+          <%= link_to 'コメント削除', post_post_comment_path(@post,post_comment), method: :delete %>
+        <% end %>
       <% end %>
       <div class="row">
         <!--コメントを送信-->

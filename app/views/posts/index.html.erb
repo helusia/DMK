@@ -41,9 +41,11 @@
             <div class="row d-flex justify-content-end">
               コメント件数：<%= post.post_comments.count %>
               <!--いいねぼたん-->
-              <div id="favorite_buttons_<%= post.id %>">
-                <%= render "favorites/favorites", post: post %>
-              </div>
+              <% if current_user.name != "guestuser" %>
+                <div id="favorite_buttons_<%= post.id %>">
+                  <%= render "favorites/favorites", post: post %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
