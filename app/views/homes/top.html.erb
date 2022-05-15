@@ -9,13 +9,19 @@
      みんなと自分の大好きな気持ちを、誰かの大好きな気持ちを語り、大好きな気持ちをさらに増やしましょう！
    </p>
  </div>
- <div class="row">
-  <%= link_to '新規会員登録', new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_in" %>
- </div>
- <div class="row">
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
- </div>
- <div class="row">
-  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
- </div>
+ <% if user_signed_in? %>
+  <div class="row">
+   <%= link_to '投稿一覧へ', posts_path, class: "btn btn-dark btn-sm btn-block mb-3 sign_in" %>
+  </div>
+ <% else %>
+  <div class="row">
+   <%= link_to '新規会員登録', new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_in" %>
+  </div>
+  <div class="row">
+   <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+  </div>
+  <div class="row">
+   <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+  </div>
+ <% end %>
 </div>
