@@ -14,9 +14,9 @@
           </div>
         <% end %>
         <p>フォロワー数</p>
-        <%= current_user.followers.count %><br>
+        <%=link_to current_user.followers.count, followers_user_path(current_user) %><br>
         <p>フォロー数</p>
-        <%= current_user.followings.count %>
+        <%=link_to current_user.followings.count, followings_user_path(current_user) %>
       </div>
     </div>
     <!--全員の投稿一覧-->
